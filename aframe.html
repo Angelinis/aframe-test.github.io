@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Animated Panda in the Forest</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item
+          id="panda-model"
+          src="path/to/panda-model.glb"
+          timeout="10000"
+        ></a-asset-item>
+      </a-assets>
+
+      <a-entity position="0 0 -5">
+        <a-sphere radius="100" color="#7BC8A4"></a-sphere>
+        <a-entity position="-15 0 -20" scale="10 10 10">
+          <a-entity
+            gltf-model="#panda-model"
+            animation-mixer="loop: repeat;"
+          ></a-entity>
+        </a-entity>
+      </a-entity>
+
+      <a-entity
+        light="type: directional; intensity: 0.5; castShadow: true;"
+        position="-1 1 0"
+      ></a-entity>
+      <a-entity light="type: ambient; intensity: 0.5;"></a-entity>
+
+      <a-sky color="#ECECEC"></a-sky>
+    </a-scene>
+  </body>
+</html>
