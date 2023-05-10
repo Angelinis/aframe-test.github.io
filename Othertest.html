@@ -1,0 +1,32 @@
+<html>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/examples/vendor/aframe/build/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+
+  <body style="margin: 0px; overflow: hidden">
+    <!--<a-scene embedded arjs='sourceType: webcam; trackingMethod: best; debugUIEnabled: false;'>-->
+
+    <a-scene
+      embedded
+      arjs="sourceType:image;
+		 sourceUrl: https://images6.fanpop.com/image/photos/37700000/Hiro-big-hero-6-37715481-1280-1145.png; 
+  debugUIEnabled: false"
+    >
+      <a-assets>
+        <img id="my-image" src="https://i.imgur.com/12sHf9o.jpg" />
+      </a-assets>
+      <a-anchor hit-testing-enabled="true">
+        <a-image
+          src="#my-image"
+          material.color="#ffb"
+          rotation="-90 0 0"
+          width="2"
+          height="2"
+          opacity="1"
+          segments-height="2"
+          segments-width="2"
+        ></a-image>
+      </a-anchor>
+      <a-camera-static />
+    </a-scene>
+  </body>
+</html>
