@@ -13,14 +13,20 @@
         ></video>
       </a-assets>
       <a-entity hide-on-enter-ar id="myobject" position="0 0 -10" scale="1 1 1">
-        <a-plane
+        <!-- <a-plane
           id="video"
           color="#FFF"
           width="1"
           height="1"
           position="1.2 0.2 0"
           material="side: front"
-        ></a-plane>
+        ></a-plane> -->
+        <a-video
+          src="#demo-video"
+          position="50 150 -100"
+          width="3"
+          height="1.5"
+        ></a-video>
       </a-entity>
 
       <a-entity id="cameraRig">
