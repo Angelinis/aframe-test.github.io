@@ -4,13 +4,12 @@
 
   <body style="margin: 0px; overflow: hidden">
     <a-scene ar-hit-test="target:#myobject;type:footprint;footprintDepth:0.2;">
-      <a-assets>
+      <a-assets timeout="10000">
         <video
           id="demo-video"
           autoplay
           loop="true"
           src="./textures/sample.mp4"
-          timeout="10000"
         ></video>
       </a-assets>
       <a-entity hide-on-enter-ar id="myobject" position="0 0 -10" scale="1 1 1">
