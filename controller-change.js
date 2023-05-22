@@ -7,6 +7,10 @@ function onLoad() {
       // sceneElement.setAttribute('ar-hit-test', `target:#${myobject};type:footprint;footprintDepth:0.2;`);
       sceneElement.setAttribute('ar-hit-test', `target:#myobject3;type:footprint;footprintDepth:0.2;`);
     });
+    sceneElement.addEventListener('ybuttondown', () => {
+      // sceneElement.setAttribute('ar-hit-test', `target:#${myobject};type:footprint;footprintDepth:0.2;`);
+      sceneElement.setAttribute('ar-hit-test', `target:#myobject2;type:footprint;footprintDepth:0.2;`);
+    });
   };
 
   onLoad();
