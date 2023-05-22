@@ -1,16 +1,12 @@
-const sceneElement = document.querySelector('a-scene');
+const sceneElement   = document.querySelector('a-scene');
+const selections = document.querySelectorAll(".selections")
+
 function onLoad() {
-    switchCameraButton.addEventListener('click', () => {
-  
-      sceneElement.setAttribute('ar-hit-test', `target:#${myobject};type:footprint;footprintDepth:0.2;`);
+  console.log(selections);
+    sceneElement.addEventListener('xbuttondown', () => {
+      // sceneElement.setAttribute('ar-hit-test', `target:#${myobject};type:footprint;footprintDepth:0.2;`);
+      sceneElement.setAttribute('ar-hit-test', `target:#myobject3;type:footprint;footprintDepth:0.2;`);
     });
-  
-  imageBtnEle.addEventListener("click", function () {
-    let index = imagesArray.indexOf(planeElement.getAttribute("src"));
-    planeElement.setAttribute('src', imagesArray[index + 1]);
-  });
-  
-  
-  }
+  };
 
   onLoad();
