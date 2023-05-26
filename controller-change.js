@@ -1,16 +1,14 @@
-const sceneElement   = document.querySelector('a-scene');
-const selections = document.querySelectorAll(".selections")
+// const sceneElement   = document.querySelector('a-scene');
+// const selections = document.querySelectorAll(".selections")
 
-function onLoad() {
-  console.log(selections);
-    sceneElement.addEventListener('xbuttondown', () => {
-      // sceneElement.setAttribute('ar-hit-test', `target:#${myobject};type:footprint;footprintDepth:0.2;`);
-      sceneElement.setAttribute('ar-hit-test', `target:#myobject3;type:footprint;footprintDepth:0.2;`);
-    });
-    sceneElement.addEventListener('ybuttondown', () => {
-      // sceneElement.setAttribute('ar-hit-test', `target:#${myobject};type:footprint;footprintDepth:0.2;`);
-      sceneElement.setAttribute('ar-hit-test', `target:#myobject2;type:footprint;footprintDepth:0.2;`);
-    });
-  };
+// function onLoad() {
+//   console.log(selections);
+//     sceneElement.addEventListener('xbuttondown', () => {
+//       sceneElement.setAttribute('ar-hit-test', `target:#myobject2;type:footprint;footprintDepth:0.2;`);
+//     });
+//     sceneElement.addEventListener('ybuttondown', () => {
+//       sceneElement.setAttribute('ar-hit-test', `target:#myobject1;type:footprint;footprintDepth:0.2;`);
+//     });
+//   };
 
-  onLoad();
+//   onLoad();
