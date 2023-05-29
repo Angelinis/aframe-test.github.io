@@ -1,12 +1,19 @@
 /* global AFRAME */
+const videosArray = [
+  "#video01",
+  "#video02",
+  "#video03",
+  "#video04"
+]
+
 AFRAME.registerComponent('play-on-click', {
    init: function () {
      this.onClick = this.onClick.bind(this);
-     this.onKeyPress = this.onKeyPress.bind(this);
+     this.onOculusPressed = this.onOculusPressed.bind(this);
    },
    play: function () {
      window.addEventListener('click', this.onClick);
-     window.addEventListener('keypress', this.onKeyPress);
+     window.addEventListener('keypress', this.onOculusPressed);
    },
    onClick: function (evt) {
      var videoEl = this.el.getAttribute('material').src;
@@ -14,13 +21,15 @@ AFRAME.registerComponent('play-on-click', {
      this.el.object3D.visible = true;
      videoEl.play();
    },
-   onKeyPress: function (evt) {
-      if (evt.key === 'o') {  // Adjust the key as needed ('p' for pause)
-         this.el.setAttribute("src", "#video03")
+   onOculusPressed: function (evt) {
+      if (evt === 'xbuttondown') {  
+        let videoSource = this.el.getAttribute("src");
+        videoSource = videosArray.indexOf(videoSource);
+         this.el.setAttribute("src", videosArray[videoSource+1] || videosArray[0]);
        };
        var videoEl = this.el.getAttribute('material').src;
       if (!videoEl) { return; }
-      if (evt.key === 'p') {  // Adjust the key as needed ('p' for pause)
+      if (evt === 'ybuttondown') {  
         videoEl.pause();
       }
    }

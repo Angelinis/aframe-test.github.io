@@ -13,7 +13,8 @@
       <a-assets>
         <video id="video01" src="./textures/video01.webm"></video>
         <video id="video02" src="./textures/video02.webm"></video>
-        <video id="video03" src="./textures/sample.mp4"></video>
+        <video id="video03" src="./textures/video03.webm"></video>
+        <video id="video04" src="./textures/sample.mp4"></video>
       </a-assets>
       <!-- <a-entity
         hide-on-enter-ar
@@ -40,18 +41,12 @@
       </a-video>
 
       <a-entity id="cameraRig">
-        <a-entity
-          id="head"
-          camera
-          position="0 1.6 0"
-          wasd-controls
-          look-controls
-        ></a-entity>
-        <!-- <a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity id="head" camera position="0 1.6 0" look-controls></a-entity>
+        <a-entity oculus-touch-controls="hand: left"></a-entity>
         <a-entity
           oculus-touch-controls="hand: right"
           oculus-thumbstick-controls
-        ></a-entity> -->
+        ></a-entity>
       </a-entity>
     </a-scene>
     <script src="controller-change.js"></script>
