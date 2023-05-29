@@ -6,36 +6,30 @@
 
   <body style="margin: 0px; overflow: hidden">
     <script src="./component-video.js"></script>
-    <a-scene
-      ar-hit-test="target:#myobject1;type:footprint;footprintDepth:0.2;"
-      environment="preset:forest"
-      cursor="rayOrigin: mouse"
-      raycaster="objects: .clickable"
-    >
+    <a-scene ar-hit-test="target:#myobject1;type:footprint;footprintDepth:0.2;">
       <a-assets>
         <video id="video01" src="./textures/video01.webm"></video>
         <video id="video02" src="./textures/video02.webm"></video>
         <video id="video03" src="./textures/video03.webm"></video>
         <video id="video04" src="./textures/sample.mp4"></video>
       </a-assets>
-      <!-- <a-entity
+      <a-entity
         hide-on-enter-ar
         id="myobject1"
         class="selections"
         position="0 0 -10"
         scale="1 1 1"
-      > -->
-      <a-entity
-        id="myVideo"
-        class="clickable"
-        geometry="primitive: plane; width: 16; height: 9"
-        material="src: #video02"
-        position="0 10 -10"
-        x-button-listener
       >
+        <a-video
+          id="myVideo"
+          width="16"
+          height="9"
+          src="#video02"
+          position="0 10 -10"
+          video-listener
+        >
+        </a-video>
       </a-entity>
-
-      <!-- </a-entity> -->
 
       <a-entity id="cameraRig">
         <a-entity

@@ -36,7 +36,7 @@ const videosArray = [
 //    }
 //  });
 
-AFRAME.registerComponent('x-button-listener', {
+AFRAME.registerComponent('video-listener', {
   init: function () {
     var el = this.el;
     var controller = null;
@@ -44,14 +44,29 @@ AFRAME.registerComponent('x-button-listener', {
       controller = el.sceneEl.querySelector('[oculus-touch-controls]');
       if (!controller) { return; }
       controller.addEventListener('xbuttondown', playVideo);
+      controller.addEventListener('ybuttondown', pauseVideo);
+      controller.addEventListener('gripdown', changeVideo);
+
     });
 
     function playVideo() {
-      var videoEl = el.getAttribute('material').src;
-      console.log(el.sceneEl);
+      var videoEl = el.getAttribute('src');
       if (!videoEl) { return; }
       videoEl.play();
     };
+
+    function pauseVideo() {
+      var videoEl = el.getAttribute('src');
+      if (!videoEl) { return; }
+      videoEl.pause();
+    };
+
+    function changeVideo() {
+      let videoSource = el.getAttribute('src');
+      videoSource = videosArray.indexOf(videoSource);
+      el.setAttribute("src", videosArray[videoSource+1] || videosArray[0]);    
+    };
+  
   }
 });
 
