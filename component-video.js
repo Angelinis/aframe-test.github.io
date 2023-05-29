@@ -42,21 +42,27 @@ AFRAME.registerComponent('video-listener', {
     var controller = null;
     el.sceneEl.addEventListener('loaded', function () {
       controller = el.sceneEl.querySelector('[oculus-touch-controls]');
-      if (!controller) { return; }
+      if (!controller) { 
+        console.log("Not controller found")
+        return; }
       controller.addEventListener('xbuttondown', playVideo);
       controller.addEventListener('ybuttondown', pauseVideo);
       controller.addEventListener('gripdown', changeVideo);
-
     });
 
+
     function playVideo() {
-      var videoEl = el.getAttribute('src');
+      var videoElId = el.getAttribute('src');
+      var videoEl = null;
+      videoEl = el.sceneEl.querySelector(videoElId);
       if (!videoEl) { return; }
       videoEl.play();
     };
 
     function pauseVideo() {
-      var videoEl = el.getAttribute('src');
+      var videoElId = el.getAttribute('src');
+      var videoEl = null;
+      videoEl = el.sceneEl.querySelector(videoElId);
       if (!videoEl) { return; }
       videoEl.pause();
     };
@@ -66,31 +72,6 @@ AFRAME.registerComponent('video-listener', {
       videoSource = videosArray.indexOf(videoSource);
       el.setAttribute("src", videosArray[videoSource+1] || videosArray[0]);    
     };
-  
+
   }
 });
-
-// AFRAME.registerComponent('y-button-listener', {
-//   init: function () {
-//     var el = this.el;
-//     el.addEventListener('ybuttondown', function (evt) {
-//       let videoSource = this.el.getAttribute("src");
-//       videoSource = videosArray.indexOf(videoSource);
-//        this.el.setAttribute("src", videosArray[videoSource+1] || videosArray[0]);    });
-//   }
-// });
-
-
-
-// AFRAME.registerComponent('grip-listener', {
-//   init: function () {
-//     var el = this.el;
-//     el.addEventListener('gripdown', function (evt) {
-//       var videoEl = this.el.getAttribute('material').src;
-//       if (!videoEl) { return; }
-//       if (evt === 'ybuttondown') {  
-//         videoEl.pause();
-//       }
-//     }
-//     )}  
-// });
