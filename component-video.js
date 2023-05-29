@@ -39,7 +39,7 @@ const videosArray = [
 AFRAME.registerComponent('x-button-listener', {
   init: function () {
     var el = this.el;
-    
+    var controller = null;
     el.sceneEl.addEventListener('loaded', function () {
       controller = el.sceneEl.querySelector('[oculus-touch-controls]');
       if (!controller) { return; }
