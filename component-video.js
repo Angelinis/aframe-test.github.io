@@ -39,25 +39,22 @@ const videosArray = [
 AFRAME.registerComponent('x-button-listener', {
   init: function () {
     var el = this.el;
-    var controller = null;
-
-    // Wait for the controller to be available
+    
     el.sceneEl.addEventListener('loaded', function () {
       controller = el.sceneEl.querySelector('[oculus-touch-controls]');
       if (!controller) { return; }
       controller.addEventListener('xbuttondown', playVideo);
     });
 
-    // Play the video when the xbuttondown event is triggered
     function playVideo() {
-      var videoElId = el.getAttribute('src');
-      if (!videoElId) { return; }
-      var videoEl = document.querySelector(videoElId);
+      var videoEl = el.getAttribute('material').src;
+      console.log(el.sceneEl);
       if (!videoEl) { return; }
       videoEl.play();
-    }
+    };
   }
 });
+
 // AFRAME.registerComponent('y-button-listener', {
 //   init: function () {
 //     var el = this.el;

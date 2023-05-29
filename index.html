@@ -9,6 +9,8 @@
     <a-scene
       ar-hit-test="target:#myobject1;type:footprint;footprintDepth:0.2;"
       environment="preset:forest"
+      cursor="rayOrigin: mouse"
+      raycaster="objects: .clickable"
     >
       <a-assets>
         <video id="video01" src="./textures/video01.webm"></video>
