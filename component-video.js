@@ -50,28 +50,25 @@ AFRAME.registerComponent('video-listener', {
       controller.addEventListener('gripdown', changeVideo);
     });
 
-
     function playVideo() {
       var videoElId = el.getAttribute('src');
       var videoEl = null;
-      videoEl = el.sceneEl.querySelector(videoElId);
+      videoEl = document.querySelector(videoElId);
       if (!videoEl) { return; }
       videoEl.play();
-    };
+    }
 
     function pauseVideo() {
       var videoElId = el.getAttribute('src');
       var videoEl = null;
-      videoEl = el.sceneEl.querySelector(videoElId);
+      videoEl = document.querySelector(videoElId);
       if (!videoEl) { return; }
       videoEl.pause();
-    };
-
+    }
     function changeVideo() {
       let videoSource = el.getAttribute('src');
       videoSource = videosArray.indexOf(videoSource);
       el.setAttribute("src", videosArray[videoSource+1] || videosArray[0]);    
     };
-
   }
 });
