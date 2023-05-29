@@ -6,31 +6,69 @@ const videosArray = [
   "#video04"
 ]
 
-AFRAME.registerComponent('play-on-click', {
-   init: function () {
-     this.onClick = this.onClick.bind(this);
-     this.onOculusPressed = this.onOculusPressed.bind(this);
-   },
-   play: function () {
-     window.addEventListener('click', this.onClick);
-     window.addEventListener('keypress', this.onOculusPressed);
-   },
-   onClick: function (evt) {
-     var videoEl = this.el.getAttribute('material').src;
-     if (!videoEl) { return; }
-     this.el.object3D.visible = true;
-     videoEl.play();
-   },
-   onOculusPressed: function (evt) {
-      if (evt === 'xbuttondown') {  
-        let videoSource = this.el.getAttribute("src");
-        videoSource = videosArray.indexOf(videoSource);
-         this.el.setAttribute("src", videosArray[videoSource+1] || videosArray[0]);
-       };
-       var videoEl = this.el.getAttribute('material').src;
+
+// AFRAME.registerComponent('play-on-click', {
+//    init: function () {
+//      this.onClick = this.onClick.bind(this);
+//      this.onOculusPressed = this.onOculusPressed.bind(this);
+//    },
+//    play: function () {
+//      window.addEventListener('click', this.onClick);
+//      window.addEventListener('keypress', this.onOculusPressed);
+//    },
+//    onClick: function (evt) {
+//      var videoEl = this.el.getAttribute('material').src;
+//      if (!videoEl) { return; }
+//      this.el.object3D.visible = true;
+//      videoEl.play();
+//    },
+//    onOculusPressed: function (evt) {
+//       if (evt === 'xbuttondown') {  
+//         let videoSource = this.el.getAttribute("src");
+//         videoSource = videosArray.indexOf(videoSource);
+//          this.el.setAttribute("src", videosArray[videoSource+1] || videosArray[0]);
+//        };
+//        var videoEl = this.el.getAttribute('material').src;
+//       if (!videoEl) { return; }
+//       if (evt === 'ybuttondown') {  
+//         videoEl.pause();
+//       }
+//    }
+//  });
+
+ AFRAME.registerComponent('x-button-listener', {
+  init: function () {
+    var el = this.el;
+    el.addEventListener('xbuttondown', function (evt) {
+      var videoEl = this.el.getAttribute('material').src;
+      if (!videoEl) { return; }
+      this.el.object3D.visible = true;
+      videoEl.play();
+    });
+  }
+});
+
+AFRAME.registerComponent('y-button-listener', {
+  init: function () {
+    var el = this.el;
+    el.addEventListener('ybuttondown', function (evt) {
+      let videoSource = this.el.getAttribute("src");
+      videoSource = videosArray.indexOf(videoSource);
+       this.el.setAttribute("src", videosArray[videoSource+1] || videosArray[0]);    });
+  }
+});
+
+
+
+AFRAME.registerComponent('grip-listener', {
+  init: function () {
+    var el = this.el;
+    el.addEventListener('gripdown', function (evt) {
+      var videoEl = this.el.getAttribute('material').src;
       if (!videoEl) { return; }
       if (evt === 'ybuttondown') {  
         videoEl.pause();
       }
-   }
- });
+    }
+    )}  
+});
