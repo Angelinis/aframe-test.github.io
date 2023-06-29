@@ -16,11 +16,15 @@ document.querySelector("#changeVideo").addEventListener("click", () => changeVid
 
 const rightController = document.querySelector("#rightController");
 
-rightController.addEventListener("raycaster-intersected", function (event) {
-  const intersectedElement = event.detail.intersectedElems[0];
-  if (intersectedElement.classList.contains("clickable")) {
-    if(intersectedElement.id === "changeVideo"){
-      changeVideo();
-    }         
+if (rightController) {
+  rightController.addEventListener("raycaster-intersected", function (event) {
+    const intersectedElement = event.detail.intersectedElems[0];
+    if (intersectedElement.classList.contains("clickable")) {
+      if (intersectedElement.id === "changeVideo") {
+        changeVideo();
+      }
+    }
+  });
+} else {
+  console.log("Controller not found");
 }
-})
