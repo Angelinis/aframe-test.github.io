@@ -12,27 +12,37 @@
       raycaster="objects: .clickable"
     >
       <a-assets>
+        <a-asset-item
+          id="monitorobj"
+          src="/textures/monitor_obj/monitor.obj"
+        ></a-asset-item>
         <video id="video01" src="./textures/video01.webm"></video>
         <video id="video02" src="./textures/video02.webm"></video>
         <video id="video03" src="./textures/video03.webm"></video>
         <video id="video04" src="./textures/sample.mp4"></video>
       </a-assets>
+
       <a-entity
-        hide-on-enter-ar
-        id="myobject1"
-        position="0 0 -10"
-        scale="1 1 1"
+        obj-model="obj: #monitorobj;"
+        material="color: black"
+        position="-12.72427 0.0322 5.5057"
+        scale="0.1 0.1 0.1"
       >
-        <a-video
-          class="clickable"
-          id="myVideo"
-          width="5"
-          height="5"
-          src="#video02"
-          position="0 1 -5"
-          video-listener
-        >
-        </a-video>
+        <a-entity id="myobject1" position="0 0 0" scale="1 1 1">
+          <a-video
+            class="clickable"
+            id="myVideo"
+            width="5"
+            height="5"
+            src="#video02"
+            position="130.92076 30.511 -138.10139"
+            video-listener=""
+            material=""
+            geometry=""
+            scale="9 6 1"
+          >
+          </a-video>
+        </a-entity>
       </a-entity>
 
       <a-entity id="cameraRig">
