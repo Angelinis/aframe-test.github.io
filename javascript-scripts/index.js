@@ -14,17 +14,19 @@ function changeVideo(){
 
 document.querySelector("#changeVideo").addEventListener("click", () => changeVideo())
 
-const rightController = document.querySelector("#rightController");
+AFRAME.registerComponent('controller-listener', {
+  init: function () {
+    const el = this.el; // Reference to the entity element this component is attached to
 
-if (rightController) {
-  rightController.addEventListener("raycaster-intersected", function (event) {
-    const intersectedElement = event.detail.intersectedElems[0];
-    if (intersectedElement.classList.contains("clickable")) {
-      if (intersectedElement.id === "changeVideo") {
-        changeVideo();
+    el.addEventListener('raycaster-intersected', function (event) {
+      const intersectedElement = event.detail.intersectedEl;
+      
+      if (intersectedElement.classList.contains("clickable")) {
+        if (intersectedElement.id === "changeVideo") {
+          changeVideo();
+        }
+        // Add more conditions or actions for other clickable elements
       }
-    }
-  });
-} else {
-  console.log("Controller not found");
-}
+    });
+  }
+});
