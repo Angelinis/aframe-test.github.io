@@ -139,8 +139,9 @@
         <a-entity
           oculus-touch-controls="hand: right"
           oculus-thumbstick-controls
-          raycaster="objects: .clickable"
           controller-listener
+          laser-controls="hand: right"
+          raycaster="lineColor: red; lineOpacity: 0.5; objects: .clickable; far: 5"
         ></a-entity>
       </a-entity>
     </a-scene>
