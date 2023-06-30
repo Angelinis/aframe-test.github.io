@@ -15,18 +15,19 @@ function changeVideo(){
 document.querySelector("#changeVideo").addEventListener("click", () => changeVideo())
 
 AFRAME.registerComponent('controller-listener', {
+  dependencies: ['raycaster'],
+
   init: function () {
     const el = this.el; // Reference to the entity element this component is attached to
 
-    el.addEventListener('raycaster-intersected', function (event) {
-      const intersectedElement = event.detail.intersectedEl;
+    el.addEventListener('raycaster-intersection', function (event) {
+      const intersectedElement = event.detail.els[0]; // Get the first intersected element
       
       if (intersectedElement.classList.contains("clickable")) {
         if (intersectedElement.id === "changeVideo") {
           changeVideo();
         }
-        // Add more conditions or actions for other clickable elements
       }
-    });
+    })
   }
 });

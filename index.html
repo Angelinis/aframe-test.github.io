@@ -3,6 +3,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component/dist/aframe-event-set-component.min.js"></script>
 
   <body style="margin: 0px; overflow: hidden">
     <a-scene>
@@ -137,11 +139,12 @@
         <a-entity id="head" camera position="0 1.6 0" look-controls></a-entity>
         <a-entity oculus-touch-controls="hand: left"></a-entity>
         <a-entity
+          id="rightController"
           oculus-touch-controls="hand: right"
           oculus-thumbstick-controls
           controller-listener
           laser-controls="hand: right"
-          raycaster="lineColor: red; lineOpacity: 0.5; objects: .clickable; near: 0.1; far: 10"
+          raycaster="objects: .clickable; near: 0.1; far: 10"
         ></a-entity>
       </a-entity>
     </a-scene>
