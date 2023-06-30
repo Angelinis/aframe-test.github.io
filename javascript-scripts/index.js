@@ -15,19 +15,29 @@ function changeVideo(){
 document.querySelector("#changeVideo").addEventListener("click", () => changeVideo())
 
 AFRAME.registerComponent('controller-listener', {
-  dependencies: ['raycaster'],
-
   init: function () {
     const el = this.el; // Reference to the entity element this component is attached to
+    let intersectedElement = null; // Variable to store the currently intersected element
 
-    el.addEventListener('raycaster-intersection', function (event) {
-      const intersectedElement = event.detail.els[0]; // Get the first intersected element
-      
+    // Event handler for raycaster intersection
+    const intersectionHandler = function (event) {
+      intersectedElement = event.detail.els[0]; // Update the intersected element
+
       if (intersectedElement.classList.contains("clickable")) {
         if (intersectedElement.id === "changeVideo") {
           changeVideo();
         }
+        // Add more conditions or actions for other clickable elements
       }
-    })
+    };
+
+    // Event handler for raycaster intersection cleared
+    const intersectionClearedHandler = function (event) {
+      intersectedElement = null; // Reset the intersected element
+    };
+
+    // Add event listeners for intersection and intersection cleared events
+    el.addEventListener('raycaster-intersection', intersectionHandler);
+    el.addEventListener('raycaster-intersection-cleared', intersectionClearedHandler);
   }
 });
