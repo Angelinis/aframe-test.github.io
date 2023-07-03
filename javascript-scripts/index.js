@@ -4,40 +4,72 @@ const videosArray = [
   "#video02",
   "#video03",
   "#video04"
-]
+];
 
-function changeVideo(){
-  let videoSource = document.querySelector("#myVideo").getAttribute("src");
-  videoSource = videosArray.indexOf(videoSource);
-  document.querySelector("#myVideo").setAttribute("src", videosArray[videoSource + 1] || videosArray[0]);
-}
-
-document.querySelector("#changeVideo").addEventListener("click", () => changeVideo())
-
-AFRAME.registerComponent('controller-listener', {
+AFRAME.registerComponent('raycaster-listener', {
   init: function () {
-    const el = this.el; // Reference to the entity element this component is attached to
-    let intersectedElement = null; // Variable to store the currently intersected element
-
-    // Event handler for raycaster intersection
-    const intersectionHandler = function (event) {
-      intersectedElement = event.detail.els[0]; // Update the intersected element
-
-      if (intersectedElement.classList.contains("clickable")) {
-        if (intersectedElement.id === "changeVideo") {
+    // this.buttonpressed = null;
+    // let controller = null;
+    // this.el.sceneEl.addEventListener('loaded', () => {
+    //   controller = this.el.sceneEl.querySelector('[oculus-touch-controls]');
+    //   if (!controller) { 
+    //     console.log("No controller found");
+    //     return;
+    //   }
+    //   controller.addEventListener('abuttondown', () => { this.buttonpressed = "pressed" });
+    //   controller.addEventListener('abuttonup', () => { this.buttonpressed = null });
+    // });
+    this.el.addEventListener('raycaster-intersected', evt => {
+      this.raycaster = evt.detail.el;
+    });
+    this.el.addEventListener('raycaster-intersected-cleared', evt => {
+      this.raycaster = null;
+    });
+  },
+  tick: function () {
+    if (!this.raycaster) { return; }  // Not intersecting.
+    let intersection = this.raycaster.components.raycaster.getIntersection(this.el);
+    if (!intersection) { return; } // Not intersecting
+    const intersectedObject = intersection.object;
+    const objectId = intersectedObject.el.getAttribute('id');
+    document.querySelector("#consoleTemporary").setAttribute("value", objectId);
+    switch (objectId) {
+      case "changeVideo":
+        // if (this.buttonpressed) {
           changeVideo();
-        }
-        // Add more conditions or actions for other clickable elements
-      }
-    };
-
-    // Event handler for raycaster intersection cleared
-    const intersectionClearedHandler = function (event) {
-      intersectedElement = null; // Reset the intersected element
-    };
-
-    // Add event listeners for intersection and intersection cleared events
-    el.addEventListener('raycaster-intersection', intersectionHandler);
-    el.addEventListener('raycaster-intersection-cleared', intersectionClearedHandler);
+        // }
+        break;
+      case "pauseVideo":
+        pauseVideo();
+        break;
+      case "playVideo":
+        playVideo();
+        break;
+      default:
+        break;
+    }
   }
 });
+
+function changeVideo() {
+  let videoSource = document.querySelector("#myVideo");
+  let currentSource = videoSource.getAttribute('src');
+  let currentIndex = videosArray.indexOf(currentSource);
+  videoSource.setAttribute("src", videosArray[currentIndex + 1] || videosArray[0]);
+}
+
+function pauseVideo() {
+  let videoSource = document.querySelector("#myVideo");
+  let currentSource = videoSource.getAttribute('src');
+  let videoEl = document.querySelector(currentSource);
+  if (!videoEl) { return; }
+  videoEl.pause();
+}
+
+function playVideo() {
+  let videoSource = document.querySelector("#myVideo");
+  let currentSource = videoSource.getAttribute('src');
+  let videoEl = document.querySelector(currentSource);
+  if (!videoEl) { return; }
+  videoEl.play();
+}
