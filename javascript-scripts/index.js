@@ -8,6 +8,20 @@ const videosArray = [
 
 AFRAME.registerComponent('raycaster-listener', {
   init: function () {
+    var controller = null;
+    var self = this; 
+    this.el.sceneEl.addEventListener('loaded', function () {
+      controller = self.el.sceneEl.querySelector('[oculus-touch-controls]');
+      if (!controller) { 
+        console.log("Not controller found")
+        return; }
+      controller.addEventListener('abuttondown', evt => {
+        this.pressed = true;
+      });
+      controller.addEventListener('abuttonup', evt => {
+        this.pressed = false;
+      });
+    })
     // this.buttonpressed = null;
     // let controller = null;
     // this.el.sceneEl.addEventListener('loaded', () => {
@@ -35,9 +49,9 @@ AFRAME.registerComponent('raycaster-listener', {
     document.querySelector("#consoleTemporary").setAttribute("value", objectId);
     switch (objectId) {
       case "changeVideo":
-        // if (this.buttonpressed) {
+        if (this.pressed) {
           changeVideo();
-        // }
+        }
         break;
       case "pauseVideo":
         pauseVideo();
