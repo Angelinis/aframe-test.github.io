@@ -7,24 +7,26 @@ const videosArray = [
 ];
 
 let buttonPressed = false;
-
+let videoChanged = false;
 
 AFRAME.registerComponent('a-button-listener', {
   init: function () {
     var el = this.el;
     el.addEventListener('abuttondown', function (evt) {
+      buttonPressed = true;
       document.querySelector("#consoleTemporary").setAttribute("value", buttonPressed);
     });
     el.addEventListener('abuttonup', function (evt) {
+      buttonPressed = false;
+      videoChanged = false; // Reset the flag when the button is released
       document.querySelector("#consoleTemporary").setAttribute("value", buttonPressed);
-    })
+    });
   }
 });
 
 AFRAME.registerComponent('raycaster-listener', {
   init: function () {
-
-   this.el.addEventListener('raycaster-intersected', evt => {
+    this.el.addEventListener('raycaster-intersected', evt => {
       this.raycaster = evt.detail.el;
     });
     this.el.addEventListener('raycaster-intersected-cleared', evt => {
@@ -37,21 +39,22 @@ AFRAME.registerComponent('raycaster-listener', {
     if (!intersection) { return; } // Not intersecting
     const intersectedObject = intersection.object;
     const objectId = intersectedObject.el.getAttribute('id');
-    // document.querySelector("#consoleTemporary").setAttribute("value", objectId + this.pressed);
-    switch (objectId) {
-      case "changeVideo":
-        if (this.pressed) {
+    
+    if (buttonPressed && !videoChanged) { // Check if the button is pressed and the video has not been changed yet
+      switch (objectId) {
+        case "changeVideo":
           changeVideo();
-        }
-        break;
-      case "pauseVideo":
-        pauseVideo();
-        break;
-      case "playVideo":
-        playVideo();
-        break;
-      default:
-        break;
+          videoChanged = true; // Set the flag to indicate that the video has been changed
+          break;
+        case "pauseVideo":
+          pauseVideo();
+          break;
+        case "playVideo":
+          playVideo();
+          break;
+        default:
+          break;
+      }
     }
   }
 });
