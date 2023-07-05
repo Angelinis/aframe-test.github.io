@@ -6,34 +6,25 @@ const videosArray = [
   "#video04"
 ];
 
+let buttonPressed = false;
+
+
+AFRAME.registerComponent('a-button-listener', {
+  init: function () {
+    var el = this.el;
+    el.addEventListener('abuttondown', function (evt) {
+      document.querySelector("#consoleTemporary").setAttribute("value", buttonPressed);
+    });
+    el.addEventListener('abuttonup', function (evt) {
+      document.querySelector("#consoleTemporary").setAttribute("value", buttonPressed);
+    })
+  }
+});
+
 AFRAME.registerComponent('raycaster-listener', {
   init: function () {
-    var controller = null;
-    var self = this; 
-    this.el.sceneEl.addEventListener('loaded', function () {
-      controller = self.el.sceneEl.querySelector('[oculus-touch-controls]');
-      if (!controller) { 
-        console.log("Not controller found")
-        return; }
-      controller.addEventListener('abuttondown', evt => {
-        this.pressed = true;
-      });
-      controller.addEventListener('abuttonup', evt => {
-        this.pressed = false;
-      });
-    })
-    // this.buttonpressed = null;
-    // let controller = null;
-    // this.el.sceneEl.addEventListener('loaded', () => {
-    //   controller = this.el.sceneEl.querySelector('[oculus-touch-controls]');
-    //   if (!controller) { 
-    //     console.log("No controller found");
-    //     return;
-    //   }
-    //   controller.addEventListener('abuttondown', () => { this.buttonpressed = "pressed" });
-    //   controller.addEventListener('abuttonup', () => { this.buttonpressed = null });
-    // });
-    this.el.addEventListener('raycaster-intersected', evt => {
+
+   this.el.addEventListener('raycaster-intersected', evt => {
       this.raycaster = evt.detail.el;
     });
     this.el.addEventListener('raycaster-intersected-cleared', evt => {
@@ -46,7 +37,7 @@ AFRAME.registerComponent('raycaster-listener', {
     if (!intersection) { return; } // Not intersecting
     const intersectedObject = intersection.object;
     const objectId = intersectedObject.el.getAttribute('id');
-    document.querySelector("#consoleTemporary").setAttribute("value", objectId);
+    // document.querySelector("#consoleTemporary").setAttribute("value", objectId + this.pressed);
     switch (objectId) {
       case "changeVideo":
         if (this.pressed) {
