@@ -81,3 +81,9 @@ function playVideo() {
   if (!videoEl) { return; }
   videoEl.play();
 }
+
+function changePosition(){
+  positionControl = document.querySelector("#raycaster").getAttribute('position');
+  document.querySelector("#consoleTemporary").setAttribute("value", positionControl);
+
+}

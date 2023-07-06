@@ -1,0 +1,166 @@
+<html>
+  <!-- Using AR for Oculus without using ARJS because can't have access to cameras -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.min.js"></script>
+  <script src="https://unpkg.com/aframe-event-set-component/dist/aframe-event-set-component.min.js"></script>
+
+  <body style="margin: 0px; overflow: hidden">
+    <a-scene>
+      <a-assets>
+        <a-asset-item
+          id="monitorobj"
+          src="./textures/monitor_obj/monitor.obj"
+        ></a-asset-item>
+        <video id="video01" src="./textures/video01.webm"></video>
+        <video id="video02" src="./textures/video02.webm"></video>
+        <video id="video03" src="./textures/video03.webm"></video>
+        <video id="video04" src="./textures/sample.mp4"></video>
+      </a-assets>
+
+      <a-entity position="0 0 0">
+        <a-entity
+          obj-model="obj: #monitorobj;"
+          material="color: black"
+          position="-12.72427 0.0322 5.5057"
+          scale="0.1 0.1 0.1"
+        >
+          <a-entity id="myobject1" position="0 0 0" scale="1 1 1">
+            <a-video
+              id="myVideo"
+              width="5"
+              height="5"
+              src="#video02"
+              position="130.92076 30.511 -138.10139"
+              video-listener=""
+              material=""
+              geometry=""
+              scale="9 6 1"
+            >
+            </a-video>
+          </a-entity>
+        </a-entity>
+        <a-sphere
+          class="raycaster-listener"
+          raycaster-listener
+          id="changeVideo"
+          color="red"
+          radius="0.2"
+          position="4.850 6.170 -8.523"
+        >
+          <a-entity
+            material="color: black"
+            geometry="primitive:plane"
+          ></a-entity>
+          <a-text
+            value="Change Video"
+            color="black"
+            position="0.6 0 0"
+          ></a-text>
+        </a-sphere>
+        <a-sphere
+          class="raycaster-listener"
+          raycaster-listener
+          id="pauseVideo"
+          color="yellow"
+          radius="0.2"
+          position="4.850 2.170 -8.523"
+        >
+          <a-entity
+            material="color: black"
+            geometry="primitive:plane"
+          ></a-entity>
+          <a-text
+            id="consoleText"
+            value="Pause Video"
+            color="black"
+            position="0.6 0 0"
+          ></a-text>
+        </a-sphere>
+        <a-sphere
+          id="playVideo"
+          class="raycaster-listener"
+          raycaster-listener
+          color="green"
+          radius="0.2"
+          position="4.850 4.170 -8.523"
+        >
+          <a-entity
+            material="color: black"
+            geometry="primitive:plane"
+          ></a-entity>
+          <a-text value="Play Video" color="black" position="0.6 0 0"></a-text>
+        </a-sphere>
+        <a-sphere
+          id="moveTV"
+          color="purple"
+          radius="0.2"
+          position="0.5 6.170 -8.523"
+        >
+          <a-entity
+            material="color: black"
+            geometry="primitive:plane"
+          ></a-entity>
+          <a-text
+            value="Move TV (Maintain)"
+            color="black"
+            position="0.6 0 0"
+          ></a-text>
+        </a-sphere>
+
+        <a-sphere
+          id="nextPic"
+          color="yellow"
+          radius="0.2"
+          position="-4.850 2.170 -8.523"
+        >
+          <a-entity
+            material="color: black"
+            geometry="primitive:plane"
+          ></a-entity>
+          <a-text value="Next Pic" color="black" position="0.6 0 0"></a-text>
+        </a-sphere>
+        <a-sphere
+          id="previousPic"
+          color="green"
+          radius="0.2"
+          position="-4.850 4.170 -8.523"
+        >
+          <a-entity
+            material="color: black"
+            geometry="primitive:plane"
+          ></a-entity>
+          <a-text
+            value="Previous Pic"
+            color="black"
+            position="0.6 0 0"
+          ></a-text>
+        </a-sphere>
+
+        <a-sphere color="purple" radius="0.2" position="0.5 -3.170 -8.523">
+          <a-text
+            id="consoleTemporary"
+            value="Move TV (Maintain)"
+            color="black"
+            position="0.6 0 0"
+          ></a-text>
+        </a-sphere>
+      </a-entity>
+
+      <a-entity id="cameraRig">
+        <a-entity id="head" camera position="0 1.6 0" look-controls></a-entity>
+        <a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity
+          id="raycaster"
+          a-button-listener
+          oculus-touch-controls="hand: right"
+          oculus-thumbstick-controls
+          laser-controls="hand: right"
+          raycaster="objects: .raycaster-listener; near: 0.1; far: 20"
+        ></a-entity>
+      </a-entity>
+    </a-scene>
+    <script src="./javascript-scripts/index.js"></script>
+  </body>
+</html>
