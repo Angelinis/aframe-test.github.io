@@ -1,0 +1,11 @@
+Model Information:
+* title:	high detailed dinosaur animation (running)
+* source:	https://sketchfab.com/3d-models/high-detailed-dinosaur-animation-running-9eac6b96031f4cc4905c31624d018ed1
+* author:	Al-Deezel (https://sketchfab.com/Al-dezel)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "high detailed dinosaur animation (running)" (https://sketchfab.com/3d-models/high-detailed-dinosaur-animation-running-9eac6b96031f4cc4905c31624d018ed1) by Al-Deezel (https://sketchfab.com/Al-dezel) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
