@@ -11,7 +11,11 @@
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
   </head>
   <body>
-    <a-scene background="color:black" environment="preset:forest">
+    <a-scene
+      physics="debug: true"
+      background="color:black"
+      environment="preset:forest"
+    >
       <a-assets>
         <a-asset-item
           id="dinosaurobj"
@@ -21,28 +25,93 @@
           id="dinosauranimation"
           src="textures/high_detailed_dinosaur_animation_running/scene.gltf"
         ></a-asset-item>
+        <a-asset-item
+          id="pokeball"
+          src="textures/pokeball/scene.gltf"
+        ></a-asset-item>
       </a-assets>
+      <a-entity>
+        <a-gltf-model
+          raycaster-listener
+          class="raycaster-listener"
+          src="#dinosauranimation"
+          position="-5 0 -9"
+          scale="3 3 3"
+          animation-mixer
+        >
+        </a-gltf-model>
+      </a-entity>
+
+      <a-entity>
+        <a-gltf-model
+          raycaster-listener
+          class="raycaster-listener"
+          src="#dinosauranimation"
+          position="-10 0 -20"
+          scale="3 3 3"
+          animation-mixer
+        >
+        </a-gltf-model>
+      </a-entity>
+      <a-entity>
+        <a-gltf-model
+          raycaster-listener
+          class="raycaster-listener"
+          src="#dinosauranimation"
+          rotation="0 90 0"
+          position="4 0 20"
+          scale="3 3 3"
+          animation-mixer
+        >
+        </a-gltf-model>
+      </a-entity>
+
       <a-entity id="rig">
-        <a-camera position="0 1.6 0" look-controls></a-camera>
+        <a-camera position="0 1.6 0" look-controls>
+          <a-text
+            value="0 dinosaurios cazados"
+            color="white"
+            position="0 -0.1 -1"
+            width="1"
+            align="center"
+          ></a-text>
+        </a-camera>
         <a-entity oculus-touch-controls="hand: left"></a-entity>
         <a-entity
           oculus-touch-controls="hand: right"
           oculus-thumbstick-controls
-        ></a-entity>
+          raycaster="objects: .raycaster-listener; near: 0.1; far: 2"
+          laser-controls
+        >
+          <a-entity
+            id="raycaster"
+            gltf-model="#pokeball"
+            position="0 0 0"
+            scale="0.3 0.3 0.3"
+          >
+          </a-entity>
+        </a-entity>
       </a-entity>
+
+      <!-- <a-entity oculus-touch-controls="hand: left"></a-entity>
+        <a-entity
+          oculus-touch-controls="hand: right"
+          oculus-thumbstick-controls
+        >
+          <a-entity
+            sphere-collider
+            gltf-model="#pokeball"
+            position="0 0 1"
+            scale="1 1 1"
+          ></a-entity>
+        </a-entity> -->
       <!-- <a-entity
         camera
         position="0 1.6 0"
         look-controls
         wasd-controls
       ></a-entity> -->
-      <a-gltf-model
-        src="#dinosauranimation"
-        position="-5 0 -9"
-        scale="3 3 3"
-        animation-mixer
-      >
-      </a-gltf-model>
     </a-scene>
+    <script src="js/dinosaur.js"></script>
   </body>
 </html>

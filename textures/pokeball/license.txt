@@ -1,0 +1,11 @@
+Model Information:
+* title:	PokeBall
+* source:	https://sketchfab.com/3d-models/pokeball-3210b69740104adcb2a3150ba075b216
+* author:	James T. McLaury (https://sketchfab.com/james.t.mclaury)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "PokeBall" (https://sketchfab.com/3d-models/pokeball-3210b69740104adcb2a3150ba075b216) by James T. McLaury (https://sketchfab.com/james.t.mclaury) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
