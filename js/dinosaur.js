@@ -10,6 +10,8 @@ AFRAME.registerComponent('raycaster-listener', {
     this.el.addEventListener('raycaster-intersected-cleared', evt => {
       this.raycaster = null;
     });
+
+
   },
   tick: function () {
     if (!this.raycaster) { return; }  // Not intersecting.
@@ -17,7 +19,11 @@ AFRAME.registerComponent('raycaster-listener', {
     if (!intersection) { return; } // Not intersecting
     const intersectedObject = intersection.object;
     if (intersectedObject){
+      const objectId = intersectedObject.el.getAttribute('id');
+      interactable = document.querySelector(`#${objectId}`);
       document.querySelector("[text]").setAttribute("value", `${++score} dinosaurios cazados`);
+      interactable.parentNode.removeChild(interactable);
+
     }
   }
 });

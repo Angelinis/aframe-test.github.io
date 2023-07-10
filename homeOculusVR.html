@@ -32,6 +32,7 @@
       </a-assets>
       <a-entity>
         <a-gltf-model
+          id="dinosaur3"
           raycaster-listener
           class="raycaster-listener"
           src="#dinosauranimation"
@@ -44,6 +45,7 @@
 
       <a-entity>
         <a-gltf-model
+          id="dinosaur2"
           raycaster-listener
           class="raycaster-listener"
           src="#dinosauranimation"
@@ -55,6 +57,7 @@
       </a-entity>
       <a-entity>
         <a-gltf-model
+          id="dinosaur1"
           raycaster-listener
           class="raycaster-listener"
           src="#dinosauranimation"
@@ -78,8 +81,8 @@
         </a-camera>
         <a-entity oculus-touch-controls="hand: left"></a-entity>
         <a-entity
-          oculus-touch-controls="hand: right"
           oculus-thumbstick-controls
+          oculus-touch-controls="hand: right"
           raycaster="objects: .raycaster-listener; near: 0.1; far: 2"
           laser-controls
         >
